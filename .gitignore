@@ -1,0 +1,6 @@
+.bin/
+.DS_Store
+xcuserdata
+Release/
+Debug/
+Thumbs.db
