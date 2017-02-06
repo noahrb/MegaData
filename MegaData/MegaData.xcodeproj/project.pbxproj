@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0454A86B1E490503002F8B4A /* Runner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0454A86A1E490503002F8B4A /* Runner.cpp */; };
+		0454A86E1E490FAB002F8B4A /* IntNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0454A86C1E490FAB002F8B4A /* IntNode.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		0454A85C1E490460002F8B4A /* MegaData */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MegaData; sourceTree = BUILT_PRODUCTS_DIR; };
 		0454A86A1E490503002F8B4A /* Runner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Runner.cpp; path = Controller/Runner.cpp; sourceTree = "<group>"; };
+		0454A86C1E490FAB002F8B4A /* IntNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IntNode.cpp; path = Model/IntNode.cpp; sourceTree = "<group>"; };
+		0454A86D1E490FAB002F8B4A /* IntNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = IntNode.hpp; path = Model/IntNode.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,8 @@
 		0454A8691E4904F2002F8B4A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0454A86C1E490FAB002F8B4A /* IntNode.cpp */,
+				0454A86D1E490FAB002F8B4A /* IntNode.hpp */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0454A86B1E490503002F8B4A /* Runner.cpp in Sources */,
+				0454A86E1E490FAB002F8B4A /* IntNode.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
