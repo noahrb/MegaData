@@ -2,12 +2,14 @@
 //  IntNode.hpp
 //  MegaData
 //
-//  Created by Beverly, Noah on 2/6/17.
+//  Created by Beverly, Noah on 2/8/17.
 //  Copyright © 2017 Beverly, Noah. All rights reserved.
 //
 
 #ifndef IntNode_hpp
 #define IntNode_hpp
+
+#include "IntNode.hpp"
 
 class IntNode
 {
