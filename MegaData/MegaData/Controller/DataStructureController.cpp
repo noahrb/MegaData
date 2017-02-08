@@ -7,3 +7,27 @@
 //
 
 #include "DataStructureController.hpp"
+#include <iostream>
+#include "../Model/IntNode.hpp"
+using namespace std
+
+DataStructureController ::
+    DataStructureController()
+{
+    
+}
+
+void DataStructureController :: start
+    ()
+{
+    cout << "Starting the prject" << endl;
+    
+    cout << "Switching to the array testing" << endl;
+    testIntArray();
+    cout << "Finished testing" << endl;
+}
+
+void DataStructureController :: testIntArray()
+{
+    cout << "Testing the array" << endl;
+}
