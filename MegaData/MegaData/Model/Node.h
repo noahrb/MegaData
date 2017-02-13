@@ -21,7 +21,7 @@ public:
     Node(Type data, Node<Type> * next);
     
     void setNodeData(Type data);
-    void setNodePointer(Node<Type> pointer);
+    void setNodePointer(Node<Type>* pointer);
     Type getNodeData();
     Node<Type> * getNodePointer();
     
