@@ -6,4 +6,13 @@
 //  Copyright © 2017 Beverly, Noah. All rights reserved.
 //
 
-#include <stdio.h>
+#include "DataStructureController.hpp"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    DataStructureController * app = new DataStructureController();
+    app->start();
+    return 0;
+}
