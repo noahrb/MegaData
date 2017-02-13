@@ -8,11 +8,15 @@
 
 #ifndef DataStructureController_hpp
 #define DataStructureController_hpp
+#include "../Model/Node.h"
 
 class DataStructureController
 {
 private:
     void testIntArray();
+    Node<int> numberNode;
+    Node<string> wordNode;
+    void testNodes();
     
 public:
     DataStructureController();

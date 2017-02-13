@@ -9,12 +9,23 @@
 #include "DataStructureController.hpp"
 #include <iostream>
 #include "../Model/IntNode.hpp"
+#include "../Model/IntNodeArray.hpp"
+#include "../Model/Node.h"
 using namespace std;
 
 DataStructureController ::
     DataStructureController()
 {
-    
+    wordNode = Node<string>("derpy mcderpface");
+    numberNode = Node<int>();
+}
+
+void DataStructureController:: testNodes()
+{
+    cout << "The contents of the Node<string>" << endl;
+    cout << wordNode.getNodeData() << endl;
+    cout << "Here is the Node<int>" << endl;
+    cout << numberNode.getNodeData() << endl;
 }
 
 void DataStructureController :: start
@@ -40,7 +51,7 @@ void DataStructureController :: testIntArray()
     
     cout << "Testing input" << endl;
     
-    for(int index = 0; index < 3; index);
+    for(int index = 0; index < 3; index++)
     {
         temp.setAtIndex(index, index);
     }
