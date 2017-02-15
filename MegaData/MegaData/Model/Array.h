@@ -30,44 +30,59 @@ public:
  */
 
 template <class Type>
-Node<Type> :: Node()
+Array<Type> :: Array()
 {
     //Explicitly DO NOT instantiate the nodeData data member
-    this->nodePointer = nullptr;
+
 }
 
 template <class Type>
-Node<Type> :: Node(Type data)
+Array<Type> :: Array(int size)
 {
-    this->nodeData = data;
-    this->nodePointer = nullptr;
+    assert(size > 0);
+    this->size = size;
+    this->front = new Node<Type>();
+    
+    for (int index = 1; index < size; index++)
+    {
+        Node<Type> * current = new Node<Type>();
+        current->setNodePointer(front);
+        front = current;
+    }
 }
 
 template <class Type>
-Node<Type> :: Node(Type nodeData, Node<Type> * nodePointer)
+void Array<Type> :: setAtIndex(int index, Type Data)
 {
-    this->nodeData = nodeData;
-    this->nodePointer = nodePointer;
+    assert(index >= 0 && index < size);
+    Node<Type> * current = front;
+    for(int spot = 0; spot < index; spot++)
+    {
+        current = current->getNodePointer();
+    }
+    
+    current->setNodeData(value);
+}
+
+template < class Type>
+Type Array<Type> :: getFromIndex(int index)
+{
+    assert(index > 0 && index < size);
+    Type value;
+    Node<Type>* current = front;
+    for(int position = 0; index < inde; position++;
+        {
+            current = current->getNodePointer();
+        }
+        
+        value = current ->getNodeData();
+    
+        return value;
 }
 
 template <class Type>
-void Node<Type> :: setNodeData(Type data)
+Type Array<Type> :: getSize()
 {
-    this->nodeData = data;
+            return size;
 }
-
-template <class Type>
-Type Node<Type> :: getNodeData()
-{
-    return this->nodeData;
-}
-
-template <class Type>
-Node<Type> * Node<Type> :: getNodePointer()
-{
-    return this->nodePointer;
-}
-
-#endif /* Node_h */
-
 #endif /* Array_h */
