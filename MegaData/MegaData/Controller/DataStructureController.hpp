@@ -9,6 +9,7 @@
 #ifndef DataStructureController_hpp
 #define DataStructureController_hpp
 #include "../Model/Node.h"
+#include "../Model/Array.h"
 #include <string>
 using namespace std;
 
@@ -23,5 +24,6 @@ private:
 public:
     DataStructureController();
     void start();
+    void testAdvancedFeatures();
 };
 #endif /* DataStructureController_hpp */

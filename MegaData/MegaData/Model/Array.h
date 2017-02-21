@@ -8,12 +8,17 @@
 
 #ifndef Array_h
 #define Array_h
+#include <iostream>
+#include "../Model/Node.h"
+#include "../Controller/DataStructureController.hpp"
+#include <assert.h>
 
+using namespace std;
 template <class Type>
 class Array
 {
 private:
-    Node<Type> front;
+    Node<Type> *front;
     int size;
 public:
     Array();
@@ -29,7 +34,7 @@ public:
     Node<Type> * getFront() const;
     
     void setAtIndex(int index, Type value);
-    Type getFromIndex(int index)
+    Type getFromIndex(int index);
     
 };
 
@@ -60,7 +65,7 @@ Array<Type> :: Array(int size)
 }
 
 template <class Type>
-void Array<Type> :: setAtIndex(int index, Type Data)
+void Array<Type> :: setAtIndex(int index, Type data)
 {
     assert(index >= 0 && index < size);
     Node<Type> * current = front;
@@ -69,7 +74,7 @@ void Array<Type> :: setAtIndex(int index, Type Data)
         current = current->getNodePointer();
     }
     
-    current->setNodeData(value);
+    current->setNodeData(data);
 }
 
 template < class Type>
@@ -78,7 +83,7 @@ Type Array<Type> :: getFromIndex(int index)
     assert(index > 0 && index < size);
     Type value;
     Node<Type>* current = front;
-    for(int position = 0; index < inde; position++;
+    for(int position = 0; index < index; position++);
         {
             current = current->getNodePointer();
         }
@@ -89,7 +94,7 @@ Type Array<Type> :: getFromIndex(int index)
 }
 
 template <class Type>
-Type Array<Type> :: getSize()
+int Array<Type> :: getSize() const
 {
             return size;
 }
@@ -119,5 +124,45 @@ Array<Type> :: ~Array()
             count--;
             cout << "Front is at: " << front << " count is: " << count << endl;
         }
+    }
+    
+    /* The copy constructor is called when you create a instance of an object by assigning it via the assignment operator (=).
+     The default copy constructor only create a shallow copy, so 
+     when buliding custom objects you must override the copy constructor C++ unlike java/swift does not support calling another constructor in 
+     a constructor.
+     */
+    template <class Type>
+    Array<Type> :: Array(const Array<Type> & toBeCopied)
+    {
+        this->size = toBeCopied.getSize();
+        
+        //Build Data Structure
+        this->front = new Node<Type>();
+        for(int index = 1; index < size; index++)
+        {
+            Node<Type> * temp = new Node<Type>();
+            temp->setNodePointer(front);
+            front = temp;
+        }
+        //Copy values into new array.
+        //This could be done at the same time as the bulid step
+        //but this is easier to explain.
+        Node<Type> * copyTemp = toBeCopied.getFront();
+        Node<Type> * updated = this->front;
+        for(int index = 0; index < size; index++)
+        {
+            updated->setNodeData(copyTemp->getNodeData());
+            updated = updated->getNodePointer();
+            copyTemp = copyTemp->getNodePointer();
+        }
+    }
+    
+    /* 
+     the const modifier at the end of the method is used to denote that the method does not impact the state of the object.
+     */
+    template <class Type>
+    Node<Type> * Array<Type> :: getFront() const
+    {
+        return front;
     }
 #endif /* Array_h */
