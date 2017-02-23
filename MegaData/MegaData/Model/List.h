@@ -35,6 +35,6 @@ public:
     Type setAtIndex(int index, Type data);
     bool contains(Type data);
     int getSize() const;
-    Node<Type>* getFront() const;    
+    Node<Type>* getFront() const;
 };
 #endif /* List_h */
