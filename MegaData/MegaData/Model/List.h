@@ -21,21 +21,23 @@ class List
 private:
     int size;
     Node<Type>* front;
+    Node<Type>* end;
 public:
     List <Type>();
-    
-    //Destructor
-    ~List<Type>();
-    //CopyConstructor
     List<Type>(const List<Type> & source);
-    //HelperMethods
+    ~List<Type>();
+    
+    int getSize() const;
+    Node<Type> * getFront() const;
+    Node<Type> * getEnd() const;
+    
     void addAtIndex(int index, Type value);
-    void add(Type value);
+    void addFront(Type value);
+    void addEnd(Type value);
+    Type getFromIndex(int index);
     Type remove(int index);
     Type setAtIndex(int index, Type data);
-    bool contains(Type data);
-    int getSize() const;
-    Node<Type>* getFront() const;
+    bool contains(Type value);
 };
 
 template <class Type>
@@ -113,13 +115,37 @@ void List<Type> :: addAtIndex(int index, Type value)
 template <class Type>
 Type List<Type> :: setAtIndex(int index, Type data)
 {
+    assert(index >= 0 && index < size);
+    Type removedData;
     
+    Node<Type> * current = front;
+    
+    for (int spot = 0; spot < index; spot++)
+    {
+        current = current ->getNodePointer();
+    }
+    
+    removedData = current->getNodeData();
+    current->setNodeData(data);
+    
+    return removedData;
 }
 
 template <class Type>
 Type List<Type> :: getFromIndex(int index)
 {
+    assert(index >= 0 && index < size);
+    Type information;
     
+    Node<Type> * current = front;
+    for (int position = 0; position < index; position++)
+    {
+        current = current->getNodePointer();
+    }
+    
+    information = current->getNodeData();
+    
+    return information;
 }
 
 template <class Type>
@@ -172,6 +198,16 @@ Type List<Type> :: remove(int index)
 template <class Type>
 bool List<Type> :: contains(Type findMe)
 {
+    bool isInList = false;
+    Node<Type> * current = front;
     
+    for (int index = 0; index < size; index++)
+    {
+        if (current->getNodeData == findMe)
+        {
+            isInList = true;
+            return isInList;
+        }
+    }
 }
 #endif /* List_h */
