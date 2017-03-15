@@ -126,3 +126,16 @@ void DataStructureController:: testListTiming()
     
     cout << "The average "
 }
+
+void DataStructureController:: testFoodQueue()
+{
+    Queue<FoodItem> tastyFood;
+    FoodItem memeFood("toing");
+    
+    tastyFood.equeue(memeFood);
+    FoodItem boring;
+    tastyFood.add(boring);
+    
+    FoodItem removed = tastyFood.dequeue();
+    cout << "The item removed from the queue was: " << removed.getFoodName() << " and should be: toing" << endl;
+}
