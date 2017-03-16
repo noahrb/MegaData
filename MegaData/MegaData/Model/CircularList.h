@@ -9,6 +9,22 @@
 #ifndef CircularList_h
 #define CircularList_h
 
+#include "DoublyLinkedList.hpp"
+
+template <class Type>
+class CircularList : public DoublyLinkedList<Type>
+{
+private:
+    BiDirectionalNode<Type> * findNode(int index);
+public:
+    CircularList();
+    ~CircularList();
+    void add(Type data);
+    Type remove(int index);
+    Type getFromIndex(int index);
+    Type setAtIndex(int index, Type data);
+    
+};
 template <class Type>
 void CircularList<Type> :: add(Type data)
 {
