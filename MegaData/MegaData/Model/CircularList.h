@@ -24,7 +24,7 @@ public:
     Type getFromIndex(int index);
     Type setAtIndex(int index, Type data);
     
-};
+};  
 template <class Type>
 void CircularList<Type> :: add(Type data)
 {
