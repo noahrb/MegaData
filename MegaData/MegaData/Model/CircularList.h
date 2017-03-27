@@ -24,7 +24,29 @@ public:
     Type getFromIndex(int index);
     Type setAtIndex(int index, Type data);
     
-};  
+};
+template <class Type>
+BiDirectionalNode<Type>* CircularList<Type>:: findNode(int index)
+{
+    BiDirectionalNode<Type>nodeToFind;
+    if(index < this->getSize() /2)
+    {
+        nodeToFind = this->getFront();
+        for(int spot = 0; spot < index; spot++)
+        {
+            nodeToFind = nodeToFind->getNextPointer();
+        }
+    }
+    else
+    {
+        nodeToFind = this->getEnd();
+        for(int spot = this->getSize() - 1; spot > index; spot--)
+        {
+            nodeToFind = nodeToFind->getPreviousPointer();
+        }
+    }
+}
+
 template <class Type>
 void CircularList<Type> :: add(Type data)
 {
@@ -98,6 +120,20 @@ Type CircularList<Type> :: getFromIndex(int index)
     retrieved = current->getNodeData();
     
     return retrieved;
+}
+
+template <class Type>
+Type CircularList<Type>:: setAtIndex(int index, Type data){
+    assert(index >= 0 && index < this->getSize());
+    
+    Type replaced;
+    
+    BiDirectionalNode<Type> * current = findNode(index);
+    
+    replaced = current->getNodeData();
+    current->setNodeData(data);
+    
+    return replaced;
 }
 
 template <class Type>
