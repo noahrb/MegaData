@@ -33,6 +33,14 @@ public:
     void inOrderTraversal();
     void preOrderTraversal();
     void postOrderTraversal();
+    
+    void printToFile();
+    
+    void demoTraversalSteps(BinarySearchTreeNode<Type> * node);
+    
+    bool contains(Type value);
+    void insert(Type itemToInsert);
+    void remove(Type value);
 };
 
 template <class Type>
@@ -82,5 +90,49 @@ void BinarySearchTree<Type> :: inOrderTraversal(BinarySearchTreeNode<Type> * pos
 {
     
 }
+
+tempate <class Type>
+void BinarySearchTree<Type> :: insert(Type itemToInsert);
+{
+    BinarySearchTreeNode<Type> * insertMe = new BinarySearchTreeNode<Type>(itemToInsert);
+    BinarySearchTreeNode<Type> * previous = nullptr;
+    BinarySearchTreeNode<Type> * current = root;
+    
+    if(current == nullptr)
+    {
+        root = insertMe;
+    }
+    else
+    {
+        while(current != nullptr)
+        {
+            previous = current;
+            if(itemToInsert < current->getNodeData())
+            {
+                current = current->getLeftChild();
+            }
+            else if(itemToInsert > current->getNodeData())
+            {
+                current = current->getRightChild();
+            }
+            else //Remove cerr after verification of understanding
+            {
+                cerr << "Item exists already - Exiting" << endl;
+                delete insertMe;
+                return;
+            }
+        }
+                
+        if (previous->getNodeData() > itemToInsert)
+                {
+                    previous->setLeftChild(insertMe);
+                }
+        else
+                {
+                    previous->setRightChild(insertMe);
+                }
+                insertMe->setRootPointer(previous);
+    }
+    }
 
 #endif /* BinarySearchTree_h */
