@@ -91,6 +91,34 @@ void BinarySearchTree<Type> :: inOrderTraversal(BinarySearchTreeNode<Type> * pos
     
 }
 
+template <class Type>
+bool BinarySearchhTree<Type> :: contains(Type itemToFind)
+{
+    BinarySearchTreeNode<Type> * current = root;
+    if(current == nullptr)
+    {
+        return false;
+    }
+    else
+    {
+        while(current != nullptr)
+        {
+            if(itemToFind == current ->getNodeData())
+            {
+                return true;
+            }
+            else if (itemToFind < current->getNodeData())
+            {
+                current = current->getLeftChild();
+            }
+            else
+            {
+                current = current->getRightChild();
+            }
+        }
+        return false;
+    }
+}
 tempate <class Type>
 void BinarySearchTree<Type> :: insert(Type itemToInsert);
 {
