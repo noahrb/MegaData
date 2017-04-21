@@ -30,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		041E46F51E54E42B00E821F4 /* Array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Array.h; path = Model/Array.h; sourceTree = "<group>"; };
+		044D457D1EAA7B450077C5CE /* AVLTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AVLTree.h; path = Model/AVLTree.h; sourceTree = "<group>"; };
 		0454A85C1E490460002F8B4A /* MegaData */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MegaData; sourceTree = BUILT_PRODUCTS_DIR; };
 		0454A86A1E490503002F8B4A /* Runner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Runner.cpp; path = Controller/Runner.cpp; sourceTree = "<group>"; };
 		0464B35F1E8C33CA004D23F6 /* FileController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileController.cpp; path = Controller/FileController.cpp; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 				04D7C8DC1E9D548400CD36CA /* BinarySearchTreeNode.h */,
 				04D7C8DD1E9D581100CD36CA /* Tree.h */,
 				04D7C8DE1E9D5BCD00CD36CA /* BinarySearchTree.h */,
+				044D457D1EAA7B450077C5CE /* AVLTree.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
