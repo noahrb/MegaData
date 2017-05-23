@@ -9,6 +9,25 @@
 #ifndef AVLTree_h
 #define AVLTree_h
 
+#include "BinarySearchTreeNode.h"
+#include "BinarySearchTree.h"
+
+template <class Type>
+class AVLTree : public BinarySearchTree<Type>
+{
+private:
+    BinarySearchTreeNode<Type> * leftRotation (BinarySearchTreeNode<Type> * parent);
+    BinarySearchTreeNode<Type> * rightRotation (BinarySearchTreeNode<Type> * parent);
+    BinarySearchTreeNode<Type> * leftRightRotation (BinarySearchTreeNode<Type> * parent);
+    BinarySearchTreeNode<Type> * rightLeftRotation (BinarySearchTreeNode<Type> * parent);
+
+    BinarySearchTreeNode<Type> * balanceSubTree (BinarySearchTreeNode<Type> * parent);
+
+    BinarySearchTreeNode<Type> * insertNode(BinarySearchTreeNode<Type> * parent, Type inserted);
+    BinarySearchTreeNode<Type> * removeNode(BinarySearchTreeNode<Type> * parent, Type remove);
+
+    int heightDifference(BinarySearchTreeNode<Type>* parent);
+
 public:
 AVLTree();
 ~AVLTree();
@@ -108,29 +127,87 @@ BinarySearchTreeNode<Type> * AVLTree<Type> :: balanceSubTree (BinarySearchTreeNo
 }
 
 template <class Type>
-BinarySearchTreeNode<Type * AVLTree<Type> :: insertNode(BinarySearchTreeNode<Type> * parent, Type inserted)
+BinarySearchTreeNode<Type> * AVLTree<Type> :: insertNode(BinarySearchTreeNode<Type> * parent, Type inserted)
 {
-    if(parent == nullptr)
-    {
-        parent = new BinarySearchTreeNode<Type>(insert);
-        return parent;
-    }
-    else if(inserted < parent->getNodeData())
-    {
-        parent->setLeftChild(insertNode(parent->getLeftChild(), inserted));
-        parent = balanceSubTree(parent);
-    }
-    else if(inserted < parent->getNodeData())
-    {
-        parent->setRightChild(insertNode(parent->getRightChild(), inserted));
-        parent = balanceSubTree(parent);
-    }
-    return parent;
-}
+	 if(parent == nullptr)
+	    {
+	        return parent;
+	    }
+	    if(inserted < parent->getNodeData())
+	    {
+	        parent->setLeftChild(removeNode(parent->getLeftChild(), inserted));
+	    }
+	    else if(inserted > parent->getNodeData())
+	    {
+	        parent->setRightChild(removeNode(parent->getRightChild(), inserted));
+	    }
+	    else
+	    {
+	        BinarySearchTreeNode<Type> * temp;
+	        if(parent->getLeftChild() == nullptr && parent->getRightChild() == nullptr)
+	        {
+	            temp = parent;
+	            delete temp;
+	        }
+	        else if(parent->getLeftChild() == nullptr)
+	        {
+	            *parent = *parent->getRightChild();
+	        }
+	        else if(parent->getRightChild() == nullptr)
+	        {
+	            *parent = *parent->getLeftChild();
+	        }
+	        else
+	        {
+	            BinarySearchTreeNode<Type> * leftMost = this->getLeftMostChild(parent->getRightChild());
+	            parent->setNodeData(leftMost->getNodeData());
+	            parent->setRightChild(removeNode(parent->getRightChild(), leftMost->getNodeData()));
+	        }
+	    }
+	    if(parent == nullptr)
+	    {
+	        return parent;
+	    }
 
-template <class Type>
-void AVLTree<Type> :: insert(Type item)
-{
-    
-}
+	    return balanceSubTree(parent);
+	}
+	template <class Type>
+	AVLTree<Type>:: ~AVLTree()
+	{
+	    delete this->getRoot();
+	}
+
+	template<class Type>
+	BinarySearchTreeNode<Type> * AVLTree<Type> ::  insertNode(BinarySearchTreeNode<Type> * parent, Type inserted)
+	{
+	    if(parent == nullptr)
+	    {
+	        parent = new BinarySearchTreeNode<Type>(inserted);
+	        return parent;
+	    }
+	    else if(inserted < parent->getNodeData())
+	    {
+	        parent->setLeftChild(insertNode(parent->getLeftChild(),inserted));
+	        parent = balanceSubTree(parent);
+	    }
+	    else if(inserted > parent->getNodeData())
+	    {
+	        parent->setRightChild(insertNode(parent->getRightChild(),inserted));
+	        parent = balanceSubTree(parent);
+	    }
+	    return parent;
+	}
+
+	template<class Type>
+	void AVLTree<Type> :: insert(Type item)
+	{
+	    insertNode(this->getRoot(), item);
+	}
+
+	template<class Type>
+	void AVLTree<Type> :: remove(Type item)
+	{
+	    removeNode(this->getRoot(), item);
+	}
+
 #endif /* AVLTree_h */
