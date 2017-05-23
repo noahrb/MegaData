@@ -14,7 +14,7 @@
 #include <assert.h>
 
 using namespace std;
-tempalte <class Type>
+template <class Type>
 class Graph
 {
 private:
