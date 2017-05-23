@@ -21,6 +21,6 @@ public:
     void finishTimer();
     void resetTimer();
     void displayTimerInformation();
-    long getExeecutionTimeInMicroseconds();
+    long getExecutionTimeInMicroseconds();
 };
 #endif /* Timer_hpp */
