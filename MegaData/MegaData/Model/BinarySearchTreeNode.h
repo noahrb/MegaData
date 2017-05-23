@@ -9,7 +9,7 @@
 #ifndef BinarySearchTreeNode_h
 #define BinarySearchTreeNode_h
 
-#include "Node.hpp"
+#include "Node.h"
 
 template <class Type>
 class BinarySearchTreeNode : public Node<Type>
