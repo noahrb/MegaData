@@ -30,16 +30,15 @@ public:
     void addVertex(const Type& value);
     void addEdge(int source, int target);
     void removeEdge(int source, int target);
-    Type& ooperator [] (int vertex);
+    Type& operator [] (int vertex);
     Type operator [] (int vertex) const;
     int size() const;
     bool areConnected(int source, int target)const;
+    bool hasUndirectedConncection(int source, int target)const;
     std::set<int> neighbors(int vertex) const;
     void depthFirstTraversal(Graph<Type> graph, int vertex);
     void breadthFirstTraversal(Graph<Type> graph, int vertex);
 };
-
-//righthandoperator memeguy123 greenbepis andoo slimer
 
 template <class Type>
 const int Graph<Type> :: MAXIMUM;
@@ -97,12 +96,12 @@ void Graph<Type> :: addVertex(const Type& value)
 }
 
 template <class Type>
-void Graph<Type> :: hasUndirectedConnection(int source, int target) const
+bool Graph<Type> :: hasUndirectedConncection(int source, int target) const
 {
     assert(source < size() && target < size());
     
     bool isAnEdge = false;
-    isAnEdge = adjacencyMatrix[source][target] || adjacencyMatrix[target][sourcce];
+    isAnEdge = adjacencyMatrix[source][target] || adjacencyMatrix[target][source] ;
     
     return isAnEdge;
 }
@@ -140,12 +139,12 @@ std::set<int> Graph<Type> :: neighbors(int vertex) const
     
     for(int index = 0; index < size(); index++)
     {
-        if[(adjacencyMatrix[vertex][index])
-           {
-               vertexNeighbors.insert(index);
-           }
+        if(adjacencyMatrix[vertex][index])
+        {
+            vertexNeighbors.insert(index);
+        }
     }
-           return vertexNeighbors;
+    return vertexNeighbors;
 }
         
 template <class Type>
@@ -163,32 +162,32 @@ template <class Type>
            }
             
 template <class Type>
-           void Graph<Type> :: depthFirstTraversal(Graph<Type> currentGraph, int vertex)
-           {
-               bool visitedVerticies[MAXIMUM];
-               assesrt(vertex < currentGraph.size());
-               std::full_n(visitedVVertices, currentGraph.size(), false);
-               depthFirstTraversal(currentGraph, vertex, visitedVertices);
-           }
+void Graph<Type> :: depthFirstTraversal(Graph<Type> currentGraph, int vertex)
+{
+    bool visitedVertices[MAXIMUM];
+    assert(vertex < currentGraph.size());
+    std::fill_n(visitedVertices, currentGraph.size(), false);
+    depthFirstTraversal(currentGraph, vertex, visitedVertices);
+}
             
            
 template <class Type>
-void Graph<Type> :: depthFirstTraversal(Graph<Type> currentGraph< int vertex, bool * visited)
+void Graph<Type> :: depthFirstTraversal(Graph<Type> currentGraph, int vertex, bool * visited)
+{
+    std::set<int> connections = currentGraph.neighbors(vertex);
+    std::set<int>::iterator setItereator;
+
+    visited[vertex] = true;
+    cout << currentGraph[vertex] << ", " << endl;
+
+    for(setItereator = connections.begin(); setItereator != connections.end(); setItereator++)
+    {
+        if(!visited[*setItereator])
         {
-            std::set<int> connections = currentGraph.neighbors(vertex);
-            std::set<int>::iterator setIterator;
-            
-            visited[vertex] = true;
-            cout << currentGraph[vertex] << ", " << endl;
-            
-            for(setIterator = connections.begin(); setIterator != connections.end(); setIterator++)
-            {
-                if(!visited[*setIterator])
-                {
-                    depthFirstTraversal(currentGraph, *setIterator, visited);
-                }
-            }
+            depthFirstTraversal(currentGraph, *setItereator, visited);
         }
+    }
+}
            
 template <class Type>
 void Graph<Type> :: breadthFirstTraversal(Graph<Type> currentGraph, int vertex)
